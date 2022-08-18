@@ -1,8 +1,8 @@
 [package]
 name = "tauri-plugin-spreadsheet"
-version = "0.0.0"
-authors = [ "You" ]
-description = ""
+version = "0.0.1"
+authors = [ "lzhida" ]
+description = "tauri plugin base on umya-spreadsheet"
 edition = "2021"
 rust-version = "1.57"
 exclude = ["/examples", "/webview-dist", "/webview-src", "node_modules"]

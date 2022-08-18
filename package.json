@@ -1,9 +1,10 @@
 {
   "name": "tauri-plugin-spreadsheet-api",
-  "version": "0.0.0",
-  "author": "You",
-  "description": "",
+  "version": "0.0.1",
+  "author": "lzhdai <zhidal@qq.com>",
+  "description": "tauri plugin base on umya-spreadsheet",
   "browser": "webview-dist/index.js",
+  "license": "MIT",
   "main": "webview-dist/index.js",
   "types": "webview-dist/index.d.ts",
   "scripts": {
