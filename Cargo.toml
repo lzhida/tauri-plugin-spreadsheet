@@ -1,6 +1,6 @@
 [package]
 name = "tauri-plugin-spreadsheet"
-version = "0.0.1"
+version = "0.0.2"
 authors = [ "lzhida" ]
 description = "tauri plugin base on umya-spreadsheet"
 edition = "2021"
