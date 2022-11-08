@@ -37,6 +37,18 @@ declare class Spreadsheet {
      */
     create(): Promise<void>;
     /**
+     * @description: 获取指定列数的数据集
+     * @param {number[]} range [ min, max ] 范围
+     * @return {*}
+     */
+    getCollectionByColumn(range?: number[]): Promise<string[][]>;
+    /**
+     * @description: 获取指定行数的数据集
+     * @param {number[]} range range [ min, max ] 范围
+     * @return {*}
+     */
+    getCollectionByRow(range?: number[]): Promise<string[][]>;
+    /**
      * @description: 获取 sheet 列数
      * @return {Promise<number>}
      */

@@ -150,6 +150,72 @@ pub fn get_value_by_column_and_row<R: Runtime>(
     })
 }
 
+#[command]
+pub fn get_collection_by_column<R: Runtime>(
+    _app: AppHandle<R>,
+    _window: Window<R>,
+    state: State<'_, SpreadsheetState>,
+    path: String,
+    sheet_name: String,
+    range: (u32, u32),
+) -> Result<Vec<Vec<String>>, Error> {
+    get_worksheet(state, path, sheet_name, |worksheet| {
+        let mut data: Vec<Vec<String>> = Vec::new();
+        let (start, end) = range;
+        for i in start..end {
+            let collection = worksheet.get_collection_by_column(&i);
+            let mut temp = vec![String::from(""); collection.len()];
+            for (_, item) in collection.iter().enumerate() {
+                if let Ok(row) = item
+                    .get_coordinate()
+                    .get_row_num()
+                    .to_string()
+                    .parse::<usize>()
+                {
+                    if row - 1 < temp.len() {
+                        temp[row - 1] = item.get_value().to_string();
+                    }
+                }
+            }
+            data.push(temp)
+        }
+        Ok(data)
+    })
+}
+
+#[command]
+pub fn get_collection_by_row<R: Runtime>(
+    _app: AppHandle<R>,
+    _window: Window<R>,
+    state: State<'_, SpreadsheetState>,
+    path: String,
+    sheet_name: String,
+    range: (u32, u32),
+) -> Result<Vec<Vec<String>>, Error> {
+    get_worksheet(state, path, sheet_name, |worksheet| {
+        let mut data: Vec<Vec<String>> = Vec::new();
+        let (start, end) = range;
+        for i in start..end {
+            let collection = worksheet.get_collection_by_row(&i);
+            let mut temp = vec![String::from(""); collection.len()];
+            for (_, item) in collection.iter().enumerate() {
+                if let Ok(column) = item
+                    .get_coordinate()
+                    .get_col_num()
+                    .to_string()
+                    .parse::<usize>()
+                {
+                    if column - 1 < temp.len() {
+                        temp[column - 1] = item.get_value().to_string();
+                    }
+                }
+            }
+            data.push(temp)
+        }
+        Ok(data)
+    })
+}
+
 /// `insert_column` 在指定位置插入指定内容的列。
 #[command]
 pub fn insert_column<R: Runtime>(

@@ -8,12 +8,15 @@ use spreadsheet::{
 };
 use state::SpreadsheetState;
 use std::{collections::HashMap, sync::Mutex};
-use worksheet::{
-    append_column, append_row, get_sheet_highest_column, get_sheet_highest_column_and_row,
-    get_sheet_highest_row, get_value_by_column_and_row, insert_column, insert_new_column,
-    insert_new_column_by_index, insert_new_row, insert_row, remove_column, remove_column_by_index,
-    remove_row, set_value_by_column_and_row,
+
+use crate::worksheet::{
+    append_column, append_row, get_collection_by_column, get_collection_by_row,
+    get_sheet_highest_column, get_sheet_highest_column_and_row, get_sheet_highest_row,
+    get_value_by_column_and_row, insert_column, insert_new_column, insert_new_column_by_index,
+    insert_new_row, insert_row, remove_column, remove_column_by_index, remove_row,
+    set_value_by_column_and_row,
 };
+
 mod error;
 mod spreadsheet;
 mod state;
@@ -28,6 +31,8 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
             close_all_xlsx,
             close_xlsx,
             copy_sheet,
+            get_collection_by_column,
+            get_collection_by_row,
             get_sheet_highest_column,
             get_sheet_highest_column_and_row,
             get_sheet_highest_row,

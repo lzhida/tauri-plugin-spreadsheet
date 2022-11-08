@@ -85,6 +85,30 @@
       });
   }
 
+  function getCollectionByColumn() {
+    console.log('getCellCollection');
+    spreadsheet
+      .getCollectionByColumn()
+      .then((res) => {
+        console.log('getCollectionByColumn result: ', res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  function getCollectionByRow() {
+    console.log('getCellCollection');
+    spreadsheet
+      .getCollectionByColumn()
+      .then((res) => {
+        console.log('getCollectionByColumn result: ', res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   function getSheetColumn() {
     console.log('获取 sheet 最大列');
     spreadsheet
@@ -292,6 +316,8 @@
   <button on:click={close}>close</button>
   <button on:click={closeAll}>closeAll</button>
   <button on:click={list}>list</button>
+  <button on:click={getCollectionByColumn}>getCollectionByColumn</button>
+  <button on:click={getCollectionByRow}>getCollectionByRow</button>
   <button on:click={getSheetRange}>getSheetRange</button>
   <button on:click={getSheetColumn}>getSheetColumn</button>
   <button on:click={getSheetRow}>getSheetRow</button>

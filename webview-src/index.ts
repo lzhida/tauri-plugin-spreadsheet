@@ -80,6 +80,46 @@ class Spreadsheet {
   }
 
   /**
+   * @description: 获取指定列数的数据集
+   * @param {number[]} range [ min, max ] 范围
+   * @return {*}
+   */
+  async getCollectionByColumn(range?: number[]): Promise<string[][]> {
+    let realRange = [];
+    if (range) {
+      realRange = range;
+    } else {
+      const column = await this.getSheetColumn();
+      realRange = [1, column];
+    }
+    return await invoke('plugin:spreadsheet|get_collection_by_column', {
+      path: this.path,
+      sheetName: this.sheetName,
+      range: realRange,
+    });
+  }
+
+  /**
+   * @description: 获取指定行数的数据集
+   * @param {number[]} range range [ min, max ] 范围
+   * @return {*}
+   */
+  async getCollectionByRow(range?: number[]): Promise<string[][]> {
+    let realRange = [];
+    if (range) {
+      realRange = range;
+    } else {
+      const row = await this.getSheetRow();
+      realRange = [1, row];
+    }
+    return await invoke('plugin:spreadsheet|get_collection_by_row', {
+      path: this.path,
+      sheetName: this.sheetName,
+      range: realRange,
+    });
+  }
+
+  /**
    * @description: 获取 sheet 列数
    * @return {Promise<number>}
    */
