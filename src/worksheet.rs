@@ -162,7 +162,7 @@ pub fn get_collection_by_column<R: Runtime>(
     get_worksheet(state, path, sheet_name, |worksheet| {
         let mut data: Vec<Vec<String>> = Vec::new();
         let (start, end) = range;
-        for i in start..end {
+        for i in start..=end {
             let collection = worksheet.get_collection_by_column(&i);
             let mut temp = vec![String::from(""); collection.len()];
             for (_, item) in collection.iter().enumerate() {
@@ -195,7 +195,7 @@ pub fn get_collection_by_row<R: Runtime>(
     get_worksheet(state, path, sheet_name, |worksheet| {
         let mut data: Vec<Vec<String>> = Vec::new();
         let (start, end) = range;
-        for i in start..end {
+        for i in start..=end {
             let collection = worksheet.get_collection_by_row(&i);
             let mut temp = vec![String::from(""); collection.len()];
             for (_, item) in collection.iter().enumerate() {
